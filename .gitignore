@@ -1,0 +1,23 @@
+# --- secrets & local env ---
+.env
+
+# --- python ---
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# --- generated artifacts ---
+index/
+data/*.pdf
+
+# --- large media (demo video is hosted on YouTube, not committed) ---
+*.mp4
+
+# --- reference material (not part of the APICN004 submission) ---
+APICN002-main/
+whatitshould.md
+
+# --- os cruft ---
+.DS_Store
+.vscode/

@@ -1,0 +1,22 @@
+# --- Core RAG pipeline ---
+pymupdf>=1.24
+sentence-transformers>=3.0
+chromadb>=0.5
+numpy>=1.26,<2.2
+requests>=2.31
+python-dotenv>=1.0
+
+# --- Frontend ---
+streamlit>=1.37
+
+# --- Speech (install what you need) ---
+faster-whisper>=1.0        # local STT (default)
+edge-tts>=6.1              # local-ish TTS (default, pure-python)
+soundfile>=0.12            # wav read/write for mic input
+
+# --- Tests ---
+pytest>=8.0
+
+# Optional extras (not required for the default Groq-dev / Ollama-default setup):
+#   piper-tts                # alternative offline TTS (needs the `piper` binary + a voice model)
+#   sounddevice>=0.4         # CLI microphone capture (Streamlit uses st.audio_input instead)
