@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 1000" font-family="'JetBrains Mono','Fira Code',Consolas,monospace">
+<rect width="1180" height="1000" fill="#0D1117"/>
+<rect width="1180" height="1000" fill="url(#dots)"/>
+<defs>
+  <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+    <circle cx="11" cy="11" r="1" fill="#1C2128" opacity="0.8"/>
+  </pattern>
+  <filter id="drop" x="-12%" y="-12%" width="124%" height="124%">
+    <feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="#000" flood-opacity="0.5"/>
+  </filter>
+  <filter id="gb"><feGaussianBlur stdDeviation="3" result="b"/><feFlood flood-color="#58A6FF" flood-opacity="0.28" result="c"/><feComposite in="c" in2="b" operator="in" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="gg"><feGaussianBlur stdDeviation="4" result="b"/><feFlood flood-color="#3FB950" flood-opacity="0.3" result="c"/><feComposite in="c" in2="b" operator="in" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <marker id="m" markerWidth="11" markerHeight="9" refX="9" refY="4.5" orient="auto"><polygon points="0 0,11 4.5,0 9" fill="#6E7681"/></marker>
+  <marker id="mb" markerWidth="11" markerHeight="9" refX="9" refY="4.5" orient="auto"><polygon points="0 0,11 4.5,0 9" fill="#58A6FF"/></marker>
+  <marker id="mg" markerWidth="11" markerHeight="9" refX="9" refY="4.5" orient="auto"><polygon points="0 0,11 4.5,0 9" fill="#3FB950"/></marker>
+  <marker id="mp" markerWidth="11" markerHeight="9" refX="9" refY="4.5" orient="auto"><polygon points="0 0,11 4.5,0 9" fill="#BC8CFF"/></marker>
+</defs>
+<text x="590" y="42" font-size="21" font-weight="700" fill="#E6EDF3" text-anchor="middle" letter-spacing="0.4">Request Flow — one pipeline, four modes</text>
+<text x="590" y="64" font-size="11" fill="#8B949E" text-anchor="middle">Modes differ only in how the question enters and how the answer leaves · the RAG core is identical</text>
+<rect x="94" y="94" width="1000" height="128" rx="14" fill="#000" opacity="0.4" filter="url(#drop)"/>
+<rect x="90" y="90" width="1000" height="128" rx="14" fill="#080E16" stroke="#58A6FF" stroke-width="2" filter="url(#gb)"/>
+<rect x="90" y="90" width="1000" height="40" rx="14" fill="#58A6FF" opacity="0.12"/>
+<rect x="90" y="118" width="1000" height="12" fill="#080E16"/>
+<text x="112" y="117" font-size="14" font-weight="700" fill="#58A6FF">① INPUT · Streamlit UI</text>
+<text x="1070" y="117" font-size="10" fill="#8B949E" text-anchor="end">src/app.py</text>
+<rect x="120" y="142" width="440" height="40" rx="8" fill="#0D1117" stroke="#58A6FF" stroke-width="1.4"/><text x="136" y="167" font-size="11.5" font-weight="600" fill="#58A6FF">text box</text><text x="546" y="167" font-size="9.5" fill="#8B949E" text-anchor="end">TITO / TIVO</text>
+<rect x="120" y="194" width="440" height="40" rx="8" fill="#0D1117" stroke="#39C5CF" stroke-width="1.4"/><text x="136" y="219" font-size="11.5" font-weight="600" fill="#39C5CF">🎙 st.audio_input → STT</text><text x="546" y="219" font-size="9.5" fill="#8B949E" text-anchor="end">VITO / VIVO</text>
+<text x="840" y="178" font-size="12" fill="#C9D1D9" text-anchor="middle">→ question</text>
+<text x="840" y="196" font-size="10" fill="#8B949E" text-anchor="middle">(plain text)</text>
+<line x1="590" y1="218" x2="590" y2="262" stroke="#58A6FF" stroke-width="2" opacity="0.8" marker-end="url(#mb)"/>
+<rect x="600" y="231" width="70" height="18" rx="5" fill="#0D1117" opacity="0.92" stroke="#58A6FF" stroke-width="0.8"/>
+<text x="635.0" y="244" font-size="10" fill="#58A6FF" text-anchor="middle">question</text>
+<rect x="94" y="266" width="1000" height="420" rx="14" fill="#000" opacity="0.4" filter="url(#drop)"/>
+<rect x="90" y="262" width="1000" height="420" rx="14" fill="#080E16" stroke="#3FB950" stroke-width="2" filter="url(#gg)"/>
+<rect x="90" y="262" width="1000" height="40" rx="14" fill="#3FB950" opacity="0.12"/>
+<rect x="90" y="290" width="1000" height="12" fill="#080E16"/>
+<text x="112" y="289" font-size="14" font-weight="700" fill="#3FB950">② CORE PIPELINE</text>
+<text x="1070" y="289" font-size="10" fill="#8B949E" text-anchor="end">src/rag/core.py · answer_question / stream_answer</text>
+<rect x="128" y="324" width="932" height="68" rx="10" fill="#000" opacity="0.3"/>
+<rect x="124" y="320" width="932" height="68" rx="10" fill="#0D1117" stroke="#39C5CF" stroke-width="1.5"/>
+<circle cx="158" cy="354" r="18" fill="#39C5CF" opacity="0.16" stroke="#39C5CF" stroke-width="1.5"/>
+<text x="158" y="360" font-size="17" font-weight="700" fill="#39C5CF" text-anchor="middle">1</text>
+<text x="190" y="349" font-size="13.5" font-weight="600" fill="#C9D1D9">Retriever.search(question)</text>
+<text x="190" y="371" font-size="10.5" fill="#8B949E">→ top-k chunks · ChromaDB cosine · year-aware + FAQ-hint</text>
+<line x1="158" y1="388" x2="158" y2="406" stroke="#484F58" stroke-width="1.6" marker-end="url(#m)"/>
+<rect x="128" y="410" width="932" height="68" rx="10" fill="#000" opacity="0.3"/>
+<rect x="124" y="406" width="932" height="68" rx="10" fill="#0D1117" stroke="#BC8CFF" stroke-width="1.5"/>
+<circle cx="158" cy="440" r="18" fill="#BC8CFF" opacity="0.16" stroke="#BC8CFF" stroke-width="1.5"/>
+<text x="158" y="446" font-size="17" font-weight="700" fill="#BC8CFF" text-anchor="middle">2</text>
+<text x="190" y="435" font-size="13.5" font-weight="600" fill="#C9D1D9">build_context(hits)</text>
+<text x="190" y="457" font-size="10.5" fill="#8B949E">→ context with [source: doc p.page] markers</text>
+<line x1="158" y1="474" x2="158" y2="492" stroke="#484F58" stroke-width="1.6" marker-end="url(#m)"/>
+<rect x="128" y="496" width="932" height="68" rx="10" fill="#000" opacity="0.3"/>
+<rect x="124" y="492" width="932" height="68" rx="10" fill="#0D1117" stroke="#F0883E" stroke-width="1.5"/>
+<circle cx="158" cy="526" r="18" fill="#F0883E" opacity="0.16" stroke="#F0883E" stroke-width="1.5"/>
+<text x="158" y="532" font-size="17" font-weight="700" fill="#F0883E" text-anchor="middle">3</text>
+<text x="190" y="521" font-size="13.5" font-weight="600" fill="#C9D1D9">llm.stream_chat(question, context)</text>
+<text x="190" y="543" font-size="10.5" fill="#8B949E">→ grounded answer · streamed tokens (SSE)</text>
+<line x1="158" y1="560" x2="158" y2="578" stroke="#484F58" stroke-width="1.6" marker-end="url(#m)"/>
+<rect x="128" y="582" width="932" height="68" rx="10" fill="#000" opacity="0.3"/>
+<rect x="124" y="578" width="932" height="68" rx="10" fill="#0D1117" stroke="#F85149" stroke-width="1.5"/>
+<circle cx="158" cy="612" r="18" fill="#F85149" opacity="0.16" stroke="#F85149" stroke-width="1.5"/>
+<text x="158" y="618" font-size="17" font-weight="700" fill="#F85149" text-anchor="middle">4</text>
+<text x="190" y="607" font-size="13.5" font-weight="600" fill="#C9D1D9">dedupe_sources(hits)</text>
+<text x="190" y="629" font-size="10.5" fill="#8B949E">→ citations (doc, page) from metadata, never model text</text>
+<line x1="590" y1="682" x2="590" y2="726" stroke="#3FB950" stroke-width="2" opacity="0.8" marker-end="url(#mg)"/>
+<rect x="600" y="695" width="126" height="18" rx="5" fill="#0D1117" opacity="0.92" stroke="#3FB950" stroke-width="0.8"/>
+<text x="663.0" y="708" font-size="10" fill="#3FB950" text-anchor="middle">answer + sources</text>
+<rect x="94" y="730" width="1000" height="150" rx="14" fill="#000" opacity="0.4" filter="url(#drop)"/>
+<rect x="90" y="726" width="1000" height="150" rx="14" fill="#080E16" stroke="#58A6FF" stroke-width="2" filter="url(#gb)"/>
+<rect x="90" y="726" width="1000" height="40" rx="14" fill="#58A6FF" opacity="0.12"/>
+<rect x="90" y="754" width="1000" height="12" fill="#080E16"/>
+<text x="112" y="753" font-size="14" font-weight="700" fill="#58A6FF">③ OUTPUT · Streamlit UI</text>
+<text x="1070" y="753" font-size="10" fill="#8B949E" text-anchor="end">src/app.py</text>
+<rect x="120" y="778" width="940" height="40" rx="8" fill="#0D1117" stroke="#58A6FF" stroke-width="1.4"/><text x="136" y="803" font-size="11.5" font-weight="600" fill="#58A6FF">markdown answer  +  Sources expander</text><text x="1046" y="803" font-size="9.5" fill="#8B949E" text-anchor="end">TITO / VITO</text>
+<rect x="120" y="830" width="940" height="40" rx="8" fill="#0D1117" stroke="#BC8CFF" stroke-width="1.4"/><text x="136" y="855" font-size="11.5" font-weight="600" fill="#BC8CFF">TTS(answer) → st.audio (autoplay)</text><text x="1046" y="855" font-size="9.5" fill="#8B949E" text-anchor="end">TIVO / VIVO</text>
+<text x="590" y="916" font-size="10.5" fill="#8B949E" text-anchor="middle">TITO text→text   ·   TIVO text→voice   ·   VITO voice→text   ·   VIVO voice→voice   ·   history kept in st.session_state (multi-turn)</text>
+</svg>

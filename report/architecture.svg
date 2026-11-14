@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 860" font-family="'JetBrains Mono','Fira Code',Consolas,monospace">
+<rect width="1400" height="860" fill="#0D1117"/>
+<rect width="1400" height="860" fill="url(#dots)"/>
+<defs>
+  <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+    <circle cx="11" cy="11" r="1" fill="#1C2128" opacity="0.8"/>
+  </pattern>
+
+  <filter id="drop" x="-10%" y="-10%" width="120%" height="120%">
+    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+  </filter>
+
+  <filter id="glow-b"><feGaussianBlur stdDeviation="3" result="b"/>
+    <feFlood flood-color="#58A6FF" flood-opacity="0.3" result="c"/>
+    <feComposite in="c" in2="b" operator="in" result="g"/>
+    <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="glow-p"><feGaussianBlur stdDeviation="3" result="b"/>
+    <feFlood flood-color="#BC8CFF" flood-opacity="0.3" result="c"/>
+    <feComposite in="c" in2="b" operator="in" result="g"/>
+    <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="glow-g"><feGaussianBlur stdDeviation="3" result="b"/>
+    <feFlood flood-color="#3FB950" flood-opacity="0.3" result="c"/>
+    <feComposite in="c" in2="b" operator="in" result="g"/>
+    <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="glow-o"><feGaussianBlur stdDeviation="3" result="b"/>
+    <feFlood flood-color="#F0883E" flood-opacity="0.3" result="c"/>
+    <feComposite in="c" in2="b" operator="in" result="g"/>
+    <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="glow-r"><feGaussianBlur stdDeviation="3" result="b"/>
+    <feFlood flood-color="#F85149" flood-opacity="0.3" result="c"/>
+    <feComposite in="c" in2="b" operator="in" result="g"/>
+    <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+
+  <marker id="arr" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#484F58"/>
+  </marker>
+  <marker id="arr-b" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#58A6FF"/>
+  </marker>
+  <marker id="arr-g" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#3FB950"/>
+  </marker>
+  <marker id="arr-o" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#F0883E"/>
+  </marker>
+  <marker id="arr-p" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#BC8CFF"/>
+  </marker>
+  <marker id="arr-r" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+    <polygon points="0 0, 10 4, 0 8" fill="#F85149"/>
+  </marker>
+</defs>
+<text x="700" y="38" font-size="22" font-weight="700" fill="#E6EDF3" text-anchor="middle" letter-spacing="0.4">APICN004  ·  Indian Income Tax RAG VoiceBot</text>
+<text x="700" y="60" font-size="11" fill="#8B949E" text-anchor="middle">Four interaction modes — one shared RAG pipeline — grounded, cited, streaming answers</text>
+
+<rect x="45" y="80" width="1320" height="170" rx="14" fill="#000" opacity="0.4" filter="url(#drop)"/>
+<rect x="40" y="75" width="1320" height="170" rx="14"
+      fill="#080F1A" stroke="#58A6FF" stroke-width="2" filter="url(#glow-b)"/>
+<rect x="40" y="75" width="1320" height="42" rx="14" fill="#0D2240" opacity="0.6"/>
+<rect x="40" y="103" width="1320" height="14" fill="#080F1A" opacity="0.9"/>
+<text x="64" y="103" font-size="15" font-weight="700" fill="#58A6FF" letter-spacing="0.5">▣  STREAMLIT APPLICATION  ·  src/app.py</text>
+<text x="1338" y="103" font-size="10" fill="#8B949E" text-anchor="end">st.audio_input  ·  st.write_stream  ·  st.audio(autoplay)  ·  session_state history</text>
+
+<rect x="78" y="118" width="290" height="112" rx="10" fill="#0D1117" stroke="#58A6FF" stroke-width="1.6" opacity="0.95"/>
+<rect x="78" y="118" width="290" height="36" rx="10" fill="#58A6FF" opacity="0.12"/>
+<text x="223" y="142" font-size="16" font-weight="700" fill="#58A6FF" text-anchor="middle">TITO</text>
+<text x="223" y="167" font-size="10.5" fill="#8B949E" text-anchor="middle">Text In</text>
+<text x="223" y="185" font-size="10.5" fill="#8B949E" text-anchor="middle">Text Out</text>
+<rect x="396" y="118" width="290" height="112" rx="10" fill="#0D1117" stroke="#A371F7" stroke-width="1.6" opacity="0.95"/>
+<rect x="396" y="118" width="290" height="36" rx="10" fill="#A371F7" opacity="0.12"/>
+<text x="541" y="142" font-size="16" font-weight="700" fill="#A371F7" text-anchor="middle">TIVO</text>
+<text x="541" y="167" font-size="10.5" fill="#8B949E" text-anchor="middle">Text In</text>
+<text x="541" y="185" font-size="10.5" fill="#8B949E" text-anchor="middle">Voice Out</text>
+<rect x="714" y="118" width="290" height="112" rx="10" fill="#0D1117" stroke="#39C5CF" stroke-width="1.6" opacity="0.95"/>
+<rect x="714" y="118" width="290" height="36" rx="10" fill="#39C5CF" opacity="0.12"/>
+<text x="859" y="142" font-size="16" font-weight="700" fill="#39C5CF" text-anchor="middle">VITO</text>
+<text x="859" y="167" font-size="10.5" fill="#8B949E" text-anchor="middle">Voice In</text>
+<text x="859" y="185" font-size="10.5" fill="#8B949E" text-anchor="middle">Text Out</text>
+<rect x="1032" y="118" width="290" height="112" rx="10" fill="#0D1117" stroke="#3FB950" stroke-width="1.6" opacity="0.95"/>
+<rect x="1032" y="118" width="290" height="36" rx="10" fill="#3FB950" opacity="0.12"/>
+<text x="1177" y="142" font-size="16" font-weight="700" fill="#3FB950" text-anchor="middle">VIVO</text>
+<text x="1177" y="167" font-size="10.5" fill="#8B949E" text-anchor="middle">Voice In</text>
+<text x="1177" y="185" font-size="10.5" fill="#8B949E" text-anchor="middle">Voice Out</text>
+
+<rect x="45" y="265" width="1320" height="95" rx="14" fill="#000" opacity="0.4" filter="url(#drop)"/>
+<rect x="40" y="260" width="1320" height="95" rx="14"
+      fill="#100620" stroke="#BC8CFF" stroke-width="2" filter="url(#glow-p)"/>
+<rect x="40" y="260" width="1320" height="42" rx="14" fill="#1A0A30" opacity="0.6"/>
+<rect x="40" y="288" width="1320" height="14" fill="#100620" opacity="0.9"/>
+<text x="64" y="288" font-size="15" font-weight="700" fill="#BC8CFF" letter-spacing="0.5">◎  SPEECH LAYER  ·  src/speech/</text>
+<text x="1338" y="288" font-size="10" fill="#8B949E" text-anchor="end">Handles voice input and output — bypassed for TITO / TIVO input, TITO / VITO output</text>
+
+<rect x="73" y="295" width="600" height="56" rx="10" fill="#000" opacity="0.35"/>
+<rect x="70" y="292" width="600" height="56" rx="10" fill="#0D1117" stroke="#BC8CFF" stroke-width="1.6" filter="url(#glow-p)" opacity="0.97"/>
+<text x="370" y="318" font-size="13" font-weight="700" fill="#BC8CFF" text-anchor="middle">STT  ·  faster-whisper  (local)</text>
+<line x1="86" y1="325" x2="654" y2="325" stroke="#BC8CFF" stroke-width="0.6" opacity="0.25"/>
+<text x="370" y="342" font-size="10" fill="#8B949E" text-anchor="middle">Whisper base model · @lru_cache · groq Whisper API option</text>
+<rect x="733" y="295" width="630" height="56" rx="10" fill="#000" opacity="0.35"/>
+<rect x="730" y="292" width="630" height="56" rx="10" fill="#0D1117" stroke="#A371F7" stroke-width="1.6" filter="url(#glow-p)" opacity="0.97"/>
+<text x="1045" y="318" font-size="13" font-weight="700" fill="#A371F7" text-anchor="middle">TTS  ·  edge-tts  en-IN-NeerjaNeural</text>
+<line x1="746" y1="325" x2="1344" y2="325" stroke="#A371F7" stroke-width="0.6" opacity="0.25"/>
+<text x="1045" y="342" font-size="10" fill="#8B949E" text-anchor="middle">sentence-group streaming → first audio in ~1.2 s · piper option</text>
+
+<rect x="45" y="380" width="1320" height="180" rx="14" fill="#000" opacity="0.4" filter="url(#drop)"/>
+<rect x="40" y="375" width="1320" height="180" rx="14"
+      fill="#060F10" stroke="#3FB950" stroke-width="2" filter="url(#glow-g)"/>
+<rect x="40" y="375" width="1320" height="42" rx="14" fill="#0A2218" opacity="0.6"/>
+<rect x="40" y="403" width="1320" height="14" fill="#060F10" opacity="0.9"/>
+<text x="64" y="403" font-size="15" font-weight="700" fill="#3FB950" letter-spacing="0.5">⚙  RAG PIPELINE  ·  src/rag/</text>
+<text x="1338" y="403" font-size="10" fill="#8B949E" text-anchor="end">src/rag/core.py · answer_question(question, history, top_k) → {answer, sources, timings}</text>
+
+<rect x="73" y="419" width="580" height="122" rx="10" fill="#000" opacity="0.35"/>
+<rect x="70" y="416" width="580" height="122" rx="10" fill="#0D1117" stroke="#39C5CF" stroke-width="1.6" filter="url(#glow-g)" opacity="0.97"/>
+<text x="360" y="442" font-size="13" font-weight="700" fill="#39C5CF" text-anchor="middle">Retriever  ·  ChromaDB  ·  cosine</text>
+<line x1="86" y1="449" x2="634" y2="449" stroke="#39C5CF" stroke-width="0.6" opacity="0.25"/>
+<text x="360" y="466" font-size="10" fill="#C9D1D9" text-anchor="middle">all-MiniLM-L6-v2  ·  384-dim  ·  top-k = 6</text>
+<text x="360" y="485" font-size="10" fill="#8B949E" text-anchor="middle">Year-aware: FY / AY detection → biased re-query</text>
+<text x="360" y="504" font-size="10" fill="#8B949E" text-anchor="middle">FAQ-hint: $in filter for FAQ / guidance docs</text>
+<rect x="733" y="419" width="630" height="122" rx="10" fill="#000" opacity="0.35"/>
+<rect x="730" y="416" width="630" height="122" rx="10" fill="#0D1117" stroke="#F0883E" stroke-width="1.6" filter="url(#glow-o)" opacity="0.97"/>
+<text x="1045" y="442" font-size="13" font-weight="700" fill="#F0883E" text-anchor="middle">LLM Engine  ·  Streaming SSE</text>
+<line x1="746" y1="449" x2="1344" y2="449" stroke="#F0883E" stroke-width="0.6" opacity="0.25"/>
+<text x="1045" y="466" font-size="10" fill="#C9D1D9" text-anchor="middle">System prompt: answer ONLY from corpus · cite doc+page</text>
+<text x="1045" y="485" font-size="10" fill="#8B949E" text-anchor="middle">slm qwen2.5:3b (Ollama)  ·  groq llama-3.3-70b  ·  openai / anthropic</text>
+<text x="1045" y="504" font-size="10" fill="#8B949E" text-anchor="middle">openai / anthropic / openrouter  ·  max_tokens=1800</text>
+<line x1="650" y1="477" x2="730" y2="477" stroke="#3FB950" stroke-width="1.8" opacity="0.7" marker-end="url(#arr-g)"/>
+<rect x="694" y="469" width="100.39999999999999" height="17" rx="4" fill="#0D1117" opacity="0.9"/>
+<text x="744.2" y="481" font-size="9.5" fill="#3FB950" text-anchor="middle">context chunks</text>
+
+<rect x="45" y="575" width="1320" height="200" rx="14" fill="#000" opacity="0.4" filter="url(#drop)"/>
+<rect x="40" y="570" width="1320" height="200" rx="14"
+      fill="#160D03" stroke="#F0883E" stroke-width="2" filter="url(#glow-o)"/>
+<rect x="40" y="570" width="1320" height="42" rx="14" fill="#2A1A06" opacity="0.6"/>
+<rect x="40" y="598" width="1320" height="14" fill="#160D03" opacity="0.9"/>
+<text x="64" y="598" font-size="15" font-weight="700" fill="#F0883E" letter-spacing="0.5">🗄  KNOWLEDGE BASE</text>
+<text x="1338" y="598" font-size="10" fill="#8B949E" text-anchor="end">Built offline once via python src/rag/ingest.py  ·  index/ is gitignored and rebuilt locally</text>
+
+<rect x="73" y="617" width="580" height="60" rx="10" fill="#000" opacity="0.35"/>
+<rect x="70" y="614" width="580" height="60" rx="10" fill="#0D1117" stroke="#D2A8FF" stroke-width="1.6" filter="url(#glow-o)" opacity="0.97"/>
+<text x="360" y="640" font-size="13" font-weight="700" fill="#D2A8FF" text-anchor="middle">ChromaDB Vector Store  ·  index/</text>
+<line x1="86" y1="647" x2="634" y2="647" stroke="#D2A8FF" stroke-width="0.6" opacity="0.25"/>
+<text x="360" y="664" font-size="10" fill="#8B949E" text-anchor="middle">5,757 chunks  ·  384-dim  ·  metadata: {doc, page, fy_tag}</text>
+<rect x="73" y="689" width="580" height="74" rx="10" fill="#000" opacity="0.35"/>
+<rect x="70" y="686" width="580" height="74" rx="10" fill="#0D1117" stroke="#2EA198" stroke-width="1.6" filter="url(#glow-o)" opacity="0.97"/>
+<text x="360" y="712" font-size="13" font-weight="700" fill="#2EA198" text-anchor="middle">Ingestion Pipeline  ·  src/rag/ingest.py</text>
+<line x1="86" y1="719" x2="634" y2="719" stroke="#2EA198" stroke-width="0.6" opacity="0.25"/>
+<text x="360" y="736" font-size="10" fill="#8B949E" text-anchor="middle">PyMuPDF  →  chunk (900 / 150)  →  all-MiniLM-L6-v2  →  ChromaDB</text>
+<text x="360" y="755" font-size="10" fill="#484F58" text-anchor="middle">fy_tag per budget year  ·  deterministic  ·  manifest.json</text>
+<rect x="733" y="617" width="630" height="142" rx="10" fill="#000" opacity="0.35"/>
+<rect x="730" y="614" width="630" height="142" rx="10" fill="#0D1117" stroke="#F85149" stroke-width="1.6" filter="url(#glow-r)" opacity="0.97"/>
+<text x="1045" y="640" font-size="13" font-weight="700" fill="#F85149" text-anchor="middle">Corpus  ·  data/*.pdf  ·  11 documents</text>
+<line x1="746" y1="647" x2="1344" y2="647" stroke="#F85149" stroke-width="0.6" opacity="0.25"/>
+<text x="1045" y="664" font-size="10" fill="#C9D1D9" text-anchor="middle">Income-tax Act 1961  (171 MB  ·  1,117 pages)</text>
+<text x="1045" y="683" font-size="10" fill="#8B949E" text-anchor="middle">Budget speeches  FY 2022-23 → 2025-26  (5 files)</text>
+<text x="1045" y="702" font-size="10" fill="#8B949E" text-anchor="middle">FAQs on BIS / FIIs / Transition  +  Crypto guide  (5 files)</text>
+<text x="1045" y="721" font-size="10" fill="#484F58" text-anchor="middle">gitignored · Act distributed via GitHub Release</text>
+<line x1="356" y1="245" x2="356" y2="260" stroke="#BC8CFF" stroke-width="1.7" opacity="0.7" marker-end="url(#arr-p)"/>
+<line x1="364" y1="260" x2="364" y2="245" stroke="#BC8CFF" stroke-width="1.7" opacity="0.7" marker-end="url(#arr-p)"/>
+<rect x="366" y="244" width="74.0" height="17" rx="4" fill="#0D1117" opacity="0.9"/>
+<text x="403.0" y="256" font-size="9.5" fill="#BC8CFF" text-anchor="middle">voice/text</text>
+<line x1="1041" y1="245" x2="1041" y2="260" stroke="#BC8CFF" stroke-width="1.7" opacity="0.7" marker-end="url(#arr-p)"/>
+<line x1="1049" y1="260" x2="1049" y2="245" stroke="#BC8CFF" stroke-width="1.7" opacity="0.7" marker-end="url(#arr-p)"/>
+<rect x="1051" y="244" width="74.0" height="17" rx="4" fill="#0D1117" opacity="0.9"/>
+<text x="1088.0" y="256" font-size="9.5" fill="#BC8CFF" text-anchor="middle">voice/text</text>
+<line x1="672" y1="355" x2="672" y2="375" stroke="#3FB950" stroke-width="1.8" opacity="0.7" marker-end="url(#arr-g)"/>
+<line x1="728" y1="375" x2="728" y2="355" stroke="#BC8CFF" stroke-width="1.8" opacity="0.7" marker-end="url(#arr-p)"/>
+<line x1="360" y1="538" x2="360" y2="570" stroke="#F0883E" stroke-width="1.8" opacity="0.7" marker-end="url(#arr-o)"/>
+<rect x="364" y="546" width="93.8" height="17" rx="4" fill="#0D1117" opacity="0.9"/>
+<text x="410.9" y="558" font-size="9.5" fill="#F0883E" text-anchor="middle">vector search</text>
+<line x1="360" y1="674" x2="360" y2="686" stroke="#F0883E" stroke-width="1.8" opacity="0.7" marker-end="url(#arr-o)"/>
+<line x1="730" y1="685" x2="650" y2="685" stroke="#F85149" stroke-width="1.8" opacity="0.7" marker-end="url(#arr-r)"/>
+<rect x="694" y="677" width="67.4" height="17" rx="4" fill="#0D1117" opacity="0.9"/>
+<text x="727.7" y="689" font-size="9.5" fill="#F85149" text-anchor="middle">PDF pages</text>
+<line x1="40" y1="822" x2="1360" y2="822" stroke="#484F58" stroke-width="0.7" opacity="0.4"/>
+<rect x="50" y="830" width="100.5" height="20" rx="5" fill="#58A6FF" opacity="0.12" stroke="#58A6FF" stroke-width="1"/>
+<text x="100.0" y="844" font-size="9.5" fill="#58A6FF" text-anchor="middle">Python 3.11</text>
+<rect x="160.5" y="830" width="78.0" height="20" rx="5" fill="#BC8CFF" opacity="0.12" stroke="#BC8CFF" stroke-width="1"/>
+<text x="199.5" y="844" font-size="9.5" fill="#BC8CFF" text-anchor="middle">ChromaDB</text>
+<rect x="248.5" y="830" width="175.5" height="20" rx="5" fill="#3FB950" opacity="0.12" stroke="#3FB950" stroke-width="1"/>
+<text x="335.5" y="844" font-size="9.5" fill="#3FB950" text-anchor="middle">sentence-transformers</text>
+<rect x="434.0" y="830" width="78.0" height="20" rx="5" fill="#F0883E" opacity="0.12" stroke="#F0883E" stroke-width="1"/>
+<text x="473.0" y="844" font-size="9.5" fill="#F0883E" text-anchor="middle">edge-tts</text>
+<rect x="522.0" y="830" width="123.0" height="20" rx="5" fill="#39C5CF" opacity="0.12" stroke="#39C5CF" stroke-width="1"/>
+<text x="583.0" y="844" font-size="9.5" fill="#39C5CF" text-anchor="middle">faster-whisper</text>
+<rect x="655.0" y="830" width="63.0" height="20" rx="5" fill="#F85149" opacity="0.12" stroke="#F85149" stroke-width="1"/>
+<text x="686.0" y="844" font-size="9.5" fill="#F85149" text-anchor="middle">Ollama</text>
+<rect x="728.0" y="830" width="85.5" height="20" rx="5" fill="#58A6FF" opacity="0.12" stroke="#58A6FF" stroke-width="1"/>
+<text x="770.0" y="844" font-size="9.5" fill="#58A6FF" text-anchor="middle">Streamlit</text>
+</svg>
