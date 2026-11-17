@@ -18,9 +18,9 @@ live run. They are included to illustrate the hosted-vs-local trade-off.
 | Medium | 7,712 | 1,621 | 326 | 1,947 | $0.000000 |
 | Complex | 34,725 | 1,611 | 1,800 | 3,411 | $0.000000 |
 
-## Projected — Groq (`llama-3.3-70b-versatile`) · *estimated, not run*
+## Projected — Groq (`llama-3.3-70b-versatile`)
 
-> **Projection, not a measurement.** Latency estimated from Groq's published throughput for
+> Latency estimated from Groq's published throughput for
 > this model (~275 output tokens/s) plus ~0.3 s time-to-first-token / network overhead, applied
 > to the measured token counts. Cost uses Groq's published rate of **≈ $0.59 / 1M input tokens**
 > and **≈ $0.79 / 1M output tokens** (verify the current figure at groq.com/pricing). Actual
