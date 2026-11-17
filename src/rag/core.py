@@ -65,11 +65,17 @@ def retrieve(
 
 def stream_answer(
     question: str, history: list[dict] | None = None, top_k: int | None = None
-) -> tuple[list[dict], Iterator[str]]:
-    """Return (sources, token_generator). Sources are known before generation starts,
-    so the UI can show citations immediately and stream the answer underneath."""
+) -> tuple[list[dict], Iterator[str], dict]:
+    """Return (sources, token_generator, usage).
+
+    Sources are known before generation starts, so the UI can show citations
+    immediately and stream the answer underneath. `usage` is an initially-empty dict
+    that the provider fills with token counts (prompt/completion/total) once the
+    generator is fully consumed — read it after the stream ends.
+    """
     _hits, context, sources = retrieve(question, top_k, history)
-    return sources, llm.stream_chat(question, context, history)
+    usage: dict = {}
+    return sources, llm.stream_chat(question, context, history, usage_out=usage), usage
 
 
 def answer_question(
@@ -77,14 +83,15 @@ def answer_question(
 ) -> dict:
     """Non-streaming convenience wrapper used by the eval harness and the CLI.
 
-    Returns {answer, sources, hits, timings}.
+    Returns {answer, sources, hits, timings, usage}.
     """
     ret = get_retriever()
     t0 = time.perf_counter()
     hits = ret.search(search_query(question, history), top_k=top_k)
     t1 = time.perf_counter()
     context = build_context(hits)
-    answer = llm.chat(question, context, history)
+    usage: dict = {}
+    answer = llm.chat(question, context, history, usage_out=usage)
     t2 = time.perf_counter()
     timings = {
         "embed_ms": round(ret._t_embed_ms, 1),
@@ -98,6 +105,7 @@ def answer_question(
         "sources": dedupe_sources(hits),
         "hits": hits,
         "timings": timings,
+        "usage": usage,
     }
 
 
@@ -112,4 +120,5 @@ if __name__ == "__main__":
     res = answer_question(q)
     print(res["answer"])
     print("\nSources:", format_sources(res["sources"]))
+    print("Tokens:", res["usage"] or "(usage not reported)")
     print("Timings:", res["timings"])

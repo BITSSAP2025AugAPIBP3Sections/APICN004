@@ -86,7 +86,9 @@ def _temperature() -> float:
     return float(os.getenv("LLM_TEMPERATURE", "0.1"))
 
 
-def _stream_openai(base: str, api_key: str, model: str, messages: list[dict]) -> Iterator[str]:
+def _stream_openai(
+    base: str, api_key: str, model: str, messages: list[dict], usage_out: dict | None = None
+) -> Iterator[str]:
     headers = {"Content-Type": "application/json"}
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
@@ -99,6 +101,7 @@ def _stream_openai(base: str, api_key: str, model: str, messages: list[dict]) ->
             "max_tokens": _max_tokens(),
             "temperature": _temperature(),
             "stream": True,
+            "stream_options": {"include_usage": True},
         },
         timeout=180,
         stream=True,
@@ -111,14 +114,22 @@ def _stream_openai(base: str, api_key: str, model: str, messages: list[dict]) ->
             if payload == "[DONE]":
                 break
             try:
-                delta = json.loads(payload)["choices"][0]["delta"].get("content")
-            except (json.JSONDecodeError, KeyError, IndexError):
+                obj = json.loads(payload)
+            except json.JSONDecodeError:
+                continue
+            if usage_out is not None and obj.get("usage"):
+                usage_out.update(obj["usage"])
+            try:
+                delta = obj["choices"][0]["delta"].get("content")
+            except (KeyError, IndexError):
                 continue
             if delta:
                 yield delta
 
 
-def _stream_anthropic(api_key: str, model: str, messages: list[dict]) -> Iterator[str]:
+def _stream_anthropic(
+    api_key: str, model: str, messages: list[dict], usage_out: dict | None = None
+) -> Iterator[str]:
     system_text = "\n".join(m["content"] for m in messages if m["role"] == "system")
     chat_msgs = [m for m in messages if m["role"] != "system"]
     with requests.post(
@@ -140,6 +151,7 @@ def _stream_anthropic(api_key: str, model: str, messages: list[dict]) -> Iterato
         stream=True,
     ) as resp:
         resp.raise_for_status()
+        _prompt_tokens = 0
         for raw in resp.iter_lines(decode_unicode=True):
             if not raw or not raw.startswith("data:"):
                 continue
@@ -147,22 +159,49 @@ def _stream_anthropic(api_key: str, model: str, messages: list[dict]) -> Iterato
                 evt = json.loads(raw[len("data:"):].strip())
             except json.JSONDecodeError:
                 continue
-            if evt.get("type") == "content_block_delta":
+            etype = evt.get("type")
+            if etype == "message_start" and usage_out is not None:
+                u = evt.get("message", {}).get("usage", {})
+                _prompt_tokens = u.get("input_tokens", 0)
+            elif etype == "content_block_delta":
                 piece = evt.get("delta", {}).get("text")
                 if piece:
                     yield piece
+            elif etype == "message_delta" and usage_out is not None:
+                out_tokens = evt.get("usage", {}).get("output_tokens", 0)
+                usage_out.update(
+                    prompt_tokens=_prompt_tokens,
+                    completion_tokens=out_tokens,
+                    total_tokens=_prompt_tokens + out_tokens,
+                )
 
 
-def stream_chat(question: str, context: str, history: list[dict] | None = None) -> Iterator[str]:
-    """Yield answer text deltas from the configured provider."""
+def stream_chat(
+    question: str,
+    context: str,
+    history: list[dict] | None = None,
+    usage_out: dict | None = None,
+) -> Iterator[str]:
+    """Yield answer text deltas from the configured provider.
+
+    If `usage_out` is given, it is populated with the provider's token usage
+    (`prompt_tokens`, `completion_tokens`, `total_tokens`) once the stream ends.
+    """
     provider, model, api_key = resolve()
     messages = build_messages(question, context, history)
     if provider == "anthropic":
-        yield from _stream_anthropic(api_key, model, messages)
+        yield from _stream_anthropic(api_key, model, messages, usage_out)
     else:
-        yield from _stream_openai(BASE_URLS[provider], api_key or "ollama", model, messages)
+        yield from _stream_openai(
+            BASE_URLS[provider], api_key or "ollama", model, messages, usage_out
+        )
 
 
-def chat(question: str, context: str, history: list[dict] | None = None) -> str:
+def chat(
+    question: str,
+    context: str,
+    history: list[dict] | None = None,
+    usage_out: dict | None = None,
+) -> str:
     """Return the full answer as a single string (consumes the stream)."""
-    return "".join(stream_chat(question, context, history))
+    return "".join(stream_chat(question, context, history, usage_out))

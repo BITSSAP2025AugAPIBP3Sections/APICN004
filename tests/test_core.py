@@ -36,7 +36,9 @@ def test_format_sources():
 
 def test_answer_question_uses_pipeline(monkeypatch):
     monkeypatch.setattr(core, "get_retriever", lambda: _FakeRetriever(HITS))
-    monkeypatch.setattr(core.llm, "chat", lambda q, ctx, hist=None: f"answer::{len(ctx)}")
+    monkeypatch.setattr(
+        core.llm, "chat", lambda q, ctx, hist=None, usage_out=None: f"answer::{len(ctx)}"
+    )
     res = core.answer_question("What is 80C?")
     assert res["answer"].startswith("answer::")
     assert res["sources"] == core.dedupe_sources(HITS)
@@ -45,7 +47,10 @@ def test_answer_question_uses_pipeline(monkeypatch):
 
 def test_stream_answer_returns_sources_and_gen(monkeypatch):
     monkeypatch.setattr(core, "get_retriever", lambda: _FakeRetriever(HITS))
-    monkeypatch.setattr(core.llm, "stream_chat", lambda q, ctx, hist=None: iter(["x", "y"]))
-    sources, gen = core.stream_answer("q")
+    monkeypatch.setattr(
+        core.llm, "stream_chat", lambda q, ctx, hist=None, usage_out=None: iter(["x", "y"])
+    )
+    sources, gen, usage = core.stream_answer("q")
     assert sources == core.dedupe_sources(HITS)
     assert "".join(gen) == "xy"
+    assert isinstance(usage, dict)

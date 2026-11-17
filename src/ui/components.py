@@ -67,6 +67,26 @@ def mode_io(mode: str) -> tuple[str, str]:
     return MODES[mode]
 
 
+def format_usage(usage: dict | None) -> str:
+    """Render token usage as a compact one-liner, or '' if unavailable."""
+    if not usage:
+        return ""
+    p = usage.get("prompt_tokens")
+    c = usage.get("completion_tokens")
+    t = usage.get("total_tokens")
+    if t is None and p is not None and c is not None:
+        t = p + c
+    if t is None:
+        return ""
+    parts = []
+    if p is not None:
+        parts.append(f"{p:,} prompt")
+    if c is not None:
+        parts.append(f"{c:,} completion")
+    detail = " + ".join(parts)
+    return f"🔢 {t:,} tokens" + (f" ({detail})" if detail else "")
+
+
 def format_sources(sources: list[dict]) -> str:
     """Render deduped citations as a compact markdown string."""
     if not sources:

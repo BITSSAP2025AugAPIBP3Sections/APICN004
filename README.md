@@ -94,6 +94,8 @@ Jump straight to any mode (links open the video at that timestamp):
   turns, so pronouns and references resolve across the conversation.
 - 🗣️ **Natural speech.** Markdown, LaTeX, and symbols are cleaned before TTS, and subtraction
   is spoken as "minus" — no "asterisk asterisk" or run-together numbers.
+- 🔢 **Token usage shown with every answer.** Real provider token counts (prompt / completion /
+  total) are captured from the API and displayed in the UI and CLI — the basis for cost math.
 - ⚡ **Streaming everywhere.** Tokens render as they arrive and audio starts after the first
   sentence group — perceived latency is a fraction of full-answer time.
 - 🧱 **Reproducible ingestion.** Deterministic chunking + an `index/manifest.json` recording
@@ -462,6 +464,22 @@ Measured on Apple M3 Pro (36 GB), open-source SLM `qwen2.5:3b`, warm caches, mea
 full complex answer), ② sentence-group streaming TTS (first audio in ~1.2 s), ③ warm model
 caches (embedding ≈ 40 ms vs. ~8 s cold), ④ `max_tokens` tuned to 1,800 so long calculations
 don't truncate.
+
+### Cost / latency / accuracy comparison
+
+Token usage (prompt / completion / total) is captured from the provider on every request and
+shown in the UI and CLI. A side-by-side comparison across providers is produced by:
+
+```bash
+python tests/compare_providers.py            # local SLM only (no key)
+GROQ_API_KEY=... python tests/compare_providers.py   # adds Groq
+```
+
+This writes [`report/comparison.md`](report/comparison.md) with per-tier and average **latency,
+token counts, and cost per request** (cost = prompt·$/1M-in + completion·$/1M-out, using the
+price table in the script). The local SLM is self-hosted (**$0 per request**) but slower on
+long answers; a hosted model like Groq Llama-3.3-70B is far faster and stronger on multi-step
+arithmetic at a small per-request cost. Accuracy is judged per provider via `run_eval.py`.
 
 ---
 

@@ -39,6 +39,8 @@ def _render_history() -> None:
     for i, turn in enumerate(st.session_state.history):
         with st.chat_message(turn["role"]):
             st.markdown(turn["content"])
+            if turn.get("tokens"):
+                st.caption(turn["tokens"])
             if turn.get("sources"):
                 with st.expander("Sources"):
                     st.markdown(ui.format_sources(turn["sources"]))
@@ -70,7 +72,7 @@ def _handle_question(question: str, out_kind: str, will_rerun: bool = False) -> 
     with st.chat_message("assistant"):
         llm_history = ui.to_llm_history(st.session_state.history[:-1])
         try:
-            sources, token_gen = core.stream_answer(question, history=llm_history)
+            sources, token_gen, usage = core.stream_answer(question, history=llm_history)
             placeholder = st.empty()
             acc = ""
             for tok in token_gen:
@@ -83,10 +85,16 @@ def _handle_question(question: str, out_kind: str, will_rerun: bool = False) -> 
             st.session_state.history.pop()  # roll back the unanswered user turn
             return
 
+        tokens_line = ui.format_usage(usage)
+        if tokens_line:
+            st.caption(tokens_line)
+
         with st.expander("Sources", expanded=True):
             st.markdown(ui.format_sources(sources))
 
         turn = {"role": "assistant", "content": answer, "sources": sources}
+        if tokens_line:
+            turn["tokens"] = tokens_line
 
         if out_kind == "voice":
             try:
@@ -195,6 +203,9 @@ def _cli() -> None:
         answer = ui.latex_to_text(res["answer"])
         print(f"\n{answer}\n")
         print(f"Sources: {core.format_sources(res['sources'])}")
+        tokens_line = ui.format_usage(res.get("usage"))
+        if tokens_line:
+            print(tokens_line)
         if core.config.show_timing():
             print(f"Timings: {res['timings']}")
         history.append({"role": "user", "content": question})
