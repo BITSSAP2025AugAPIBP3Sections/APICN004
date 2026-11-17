@@ -468,18 +468,26 @@ don't truncate.
 ### Cost / latency / accuracy comparison
 
 Token usage (prompt / completion / total) is captured from the provider on every request and
-shown in the UI and CLI. A side-by-side comparison across providers is produced by:
+shown in the UI and CLI. A side-by-side comparison is produced by:
 
 ```bash
 python tests/compare_providers.py            # local SLM only (no key)
-GROQ_API_KEY=... python tests/compare_providers.py   # adds Groq
+GROQ_API_KEY=... python tests/compare_providers.py   # adds measured Groq rows
 ```
 
-This writes [`report/comparison.md`](report/comparison.md) with per-tier and average **latency,
-token counts, and cost per request** (cost = prompt·$/1M-in + completion·$/1M-out, using the
-price table in the script). The local SLM is self-hosted (**$0 per request**) but slower on
-long answers; a hosted model like Groq Llama-3.3-70B is far faster and stronger on multi-step
-arithmetic at a small per-request cost. Accuracy is judged per provider via `run_eval.py`.
+Averages per request (full breakdown in [`report/comparison.md`](report/comparison.md)):
+
+| Provider | Avg latency | Avg tokens | Avg cost / request | Source |
+|----------|------------:|-----------:|-------------------:|--------|
+| Local SLM (`qwen2.5:3b`, self-hosted) | ~15.5 s | 2,395 | **$0** | measured |
+| Groq (`llama-3.3-70b-versatile`) | ~3.0 s | 2,395 | **~$0.0016** | projected* |
+
+\* **Projected, not measured** — we had no Groq API key, so the Groq row is estimated from
+Groq's published throughput (~275 tok/s) and pricing (≈ $0.59 / $0.79 per 1M input / output
+tokens; verify at groq.com/pricing), applied to the measured token counts. The local SLM costs
+nothing per request but is slower on long answers; a hosted 70B model is far faster and stronger
+on multi-step arithmetic for a small per-request cost. Supply a `GROQ_API_KEY` to replace the
+projection with a real run.
 
 ---
 
